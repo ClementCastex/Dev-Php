@@ -1,4 +1,5 @@
-<?php
+
+    <?php
 include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
@@ -44,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             $date_ppro = date('Y-m-d');
             $creator_ppro = 'Your Name';  
 
-            $sql = "INSERT INTO projets_perso (image_ppro, title_ppro, description_ppro, date_ppro, creator_ppro)
+            $sql = "INSERT INTO projets_pro (image_ppro, title_ppro, description_ppro, date_ppro, creator_ppro)
                     VALUES (?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sssss", $target_file, $title_ppro, $description_ppro, $date_ppro, $creator_ppro);
@@ -58,6 +59,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         }
     }
 }
+/* Commentaire */
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $project_id = $_POST['project_id'];
+    $comment_text = $_POST['texte_commentaire_pro'];
+    // Sanitize inputs here as necessary
+
+    $sql = "INSERT INTO commentaires_pro (id_projet_pro, texte_commentaire_pro) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("is", $project_id, $comment_text);
+
+    if ($stmt->execute()) {
+        echo "Comment added successfully!";
+    } else {
+        echo "Error adding comment: " . $conn->error;
+    }
+}if (isset($row['id_ppro'])) {
+    $project_id = $row['id_ppro'];
+    // Continue processing
+} else {
+    // Handle the error, e.g., log it or display a message
+    error_log('id_ppro is not set in the row.');
+    }
+
 ?>
 <html lang="fr">
 
@@ -79,53 +103,101 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     <h1>Mes Projets Professionnels</h1>
     <p>Dans cette rubrique, vous découvrirez mes <strong>Projets Professionnels</strong>, incluant des projets réalisés lors des cours de la Normandie Web School. Chaque projet est accompagné d’une description incluant les <strong>logiciels utilisés</strong> et les <strong>dates de création</strong>.</p>
         <button type="button" id="openModalButton" class="button" data-toggle="modal" data-target="#myModal">
-    Ajoutez votre Projet
-</button>
+        Ajoutez votre Projet
+        </button>
 
-<!-- partie caché  -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Ajouter un Projet</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class='bx bx-chevrons-right'></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-                    <div id="i-image"><p>Sélectionnez une image :</p>
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                        </div>
-                    <div id="i-titre">
-                        <p>Titre :</p>
-                        <input type="text" name="title_ppro" id="title_ppro">
-                        </div>
-                    <div id="i-descrip">
-                        <p>Description :</p>
-                        <textarea name="description_ppro" id="description_ppro"></textarea>
-                    </div>  
-                    <input type="submit" value="Poster ton Projet" name="submit" class="btn btn-white btn-animate">
-                </form>
+        <!-- partie caché  -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Ajouter un Projet</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class='bx bx-chevrons-right'></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                        <div id="i-image"><p>Sélectionnez une image :</p>
+                            <input type="file" name="fileToUpload" id="fileToUpload">
+                            </div>
+                        <div id="i-titre">
+                            <p>Titre :</p>
+                            <input type="text" name="title_ppro" id="title_ppro">
+                            </div>
+                        <div id="i-descrip">
+                            <p>Description :</p>
+                            <textarea name="description_ppro" id="description_ppro"></textarea>
+                        </div>  
+                        <input type="submit" value="Poster ton Projet" name="submit" class="btn btn-white btn-animate">
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div id="Projets">
+        <div id="Projets">
 <?php
 $sql = "SELECT * FROM projets_pro";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $modalTarget = 'projectInfoModal-' . $row['id_ppro'];
 ?>
-        <div class="project" style="display: flex; align-items: flex-start;">
+<?php
+$sql = "SELECT * FROM projets_pro";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Utilisez l'ID du projet pour créer un ID de modal unique
+        $uniqueModalId = "projectInfoModal-" . $row['id_ppro'];
+?>
+        <div class="projet" style="display: flex; align-items: flex-start;">
             <div class="img-left" style="flex: 2;">
                 <img class="P-img" src="<?php echo htmlspecialchars($row["image_ppro"]); ?>" alt="Projet :<?php echo htmlspecialchars($row["title_ppro"]); ?>">
             </div>
             <div class="text_right" style="flex: 2; padding-left: 20px;">
                 <h2 class="P-titre"><?php echo htmlspecialchars($row["title_ppro"]); ?></h2>
                 <p class="P-descrip"><?php echo htmlspecialchars($row["description_ppro"]); ?></p>
+                <button type="button" class="btn-projet" data-toggle="modal" data-target="#<?php echo $uniqueModalId; ?>">
+                En connaître plus sur le projet
+                </button>
+                <div id="<?php echo $uniqueModalId; ?>" class="modal">
+                    <div class="modal-content-projet">
+                        <div id="projets-content">
+                            <div class="modal-img">
+                                <img class="M-img" src="<?php echo htmlspecialchars($row["image_ppro"]); ?>" alt="Projet :<?php echo htmlspecialchars($row["title_ppro"]); ?>">
+                            </div>
+                            <div class="modal-descrip">
+                                <p class="M-descrip"><?php echo htmlspecialchars($row["description_ppro"]); ?></p>
+                            </div>
+                        </div>
+                        <div class="modal-com">
+                            <div class="sec-com">
+                            <?php
+                                $comment_sql = "SELECT texte_commentaire_pro FROM commentaires_pro WHERE id_projet_pro = ?";
+                                $comment_stmt = $conn->prepare($comment_sql);
+                                $comment_stmt->bind_param("i", $row["id_ppro"]);
+                                $comment_stmt->execute();
+                                $comment_result = $comment_stmt->get_result();
+
+                                if ($comment_result->num_rows > 0) {
+                                    while ($comment_row = $comment_result->fetch_assoc()) {
+                                        echo "<p>" . htmlspecialchars($comment_row['texte_commentaire_pro']) . "</p>";
+                                    }
+                                } else {
+                                    echo "<p>No comments yet.</p>";
+                                }
+                            ?>
+                            </div>
+                            <form class="inp-com" method="post" action="projets-professionnels.php">
+                                <input type="hidden" name="project_id" value="<?php echo $row['id_ppro']; ?>">
+                                <p>Laissez un Commentaire:</p>
+                                <textarea name="texte_commentaire_pro" id="texte_commentaire_pro"></textarea>
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>  
+                </div>
                 <div class="detail">
                     <p class="date"><?php echo htmlspecialchars($row["date_ppro"]); ?></p>
                     <p class="creator"><?php echo htmlspecialchars($row["creator_ppro"]); ?></p>
@@ -138,21 +210,18 @@ if ($result->num_rows > 0) {
     echo "Aucun projet";
 }
 ?>
+
+<?php
+    }
+} else {
+    echo "Aucun projet";
+}
+?> 
         <?php   include 'footer.php'; ?>
+
 </div>
 
-<script>
-$(document).ready(function(){
-    $("#openModalButton").click(function(){
-    $("#myModal").modal('toggle');
-    });
-$(".close").click(function(){
-    $("#myModal").modal('hide');
-});
-});
-
-</script>
-
+<script src="script.js"></script>
 </body>
 
 </html>
