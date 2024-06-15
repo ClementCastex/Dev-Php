@@ -36,7 +36,7 @@ li {
 p,
 a {
   font-family: "Quicksand", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   color: #f7f3f7;
 }
 
@@ -78,7 +78,7 @@ a {
   padding-top: 70px;
 }
 #slidingPart p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   padding-top: 20px;
 }
 #slidingPart a {

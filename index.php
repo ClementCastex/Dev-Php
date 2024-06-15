@@ -49,11 +49,9 @@
         <div id="bottom-body">
             <div id="top">
                 <div id="top-left">
-                    <h2>Explorer mes Travaux </h2>
+                    <h2>Explorez mes Travaux </h2>
                     <p>
-                        Dans cette rubrique, vous découvrirez mes Projets Personnels et Professionnels, réaliser dans
-                        différentes situation et accompagnés d'une description incluant les logiciels utilisés et les dates
-                        de création.
+                    Dans cette rubrique, vous découvrirez mes projets personnels et professionnels, réalisés dans différentes situations et accompagnés d'une description incluant les logiciels utilisés ainsi que les dates de création.
                     </p>
                     <div id="button-double">
                         <div id="bd-left">
@@ -65,10 +63,9 @@
                     </div>
                 </div>
                 <div id="top-right">
-                    <h2>Page de Présentation</h2>
+                    <h2>Page de présentation</h2>
                     <p>
-                        Dans cette rubrique, vous aller voir une Présentation de moi plus détailler. Que cela soit pour
-                        savoir pourquoi je m'oriente dans cette voie ou pour voir mes passions et loisirs.
+                    Dans cette rubrique, vous allez découvrir une présentation de moi-même plus détaillée. Vous pourrez comprendre pourquoi j'ai choisi cette voie, ainsi que découvrir mes passions et loisirs.
                     </p>
                     <div id="Profil">
                     <button  class="btnbt simple" onclick="window.location.href = 'profil.php';">Ma Description</button>
@@ -77,10 +74,9 @@
             </div>
             <div id="bottom">
                 <div id="bottom-left">
-                    <h2>Charte Graphique du site</h2>
+                    <h2>Charte graphique du site</h2>
                     <p>
-                        Dans cette section, vous découvrirez la partie graphique de mon site, comprenant les Couleurs, la
-                        Typographie et le Logo.
+                    Dans cette section, vous découvrirez les éléments graphiques de mon site, comprenant les couleurs, la typographie et le logo
                     </p>
                     <div id="CharteG">
                     <button  class="btnbt simple" onclick="window.location.href = 'charte-graphique.php';">Ma Charte Graphique</button>
@@ -89,8 +85,7 @@
                 <div id="bottom-right">
                     <h2>CV en Htlm et Css</h2>
                     <p>
-                        Dans cette rubrique, vous pourrez consulter mon CV en Html/CSS, ainsi que le code qui le constitue
-                        et un lien pour télécharger la version la plus récente de mon CV.
+                    Dans cette rubrique, vous pourrez consulter mon CV en HTML/CSS, ainsi que le code qui le constitue et un lien pour télécharger la version la plus récente de mon CV.
                     </p>
                     <div id="CV">
                     <button  class="btnbt simple" onclick="window.location.href = 'CV.php';">Mon CV</button>

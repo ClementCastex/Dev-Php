@@ -58,8 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
         }
     }
 }
-
-
 ?>
 <html lang="fr">
 
@@ -79,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 <?php   include 'sidebar.php'; ?>
     <div class="main-content">
     <h1>Mes Projets Professionnels</h1>
-    <p>Dans cette rubrique, vous découvrirez mes Projets Professionnels, vous y trouverez des Projets réalisés lors des cours de la Normandie Web School. Ils seront accompagnés d’une description incluant les logiciels utilisés et les dates de création.</p>
+    <p>Dans cette rubrique, vous découvrirez mes <strong>Projets Professionnels</strong>, incluant des projets réalisés lors des cours de la Normandie Web School. Chaque projet est accompagné d’une description incluant les <strong>logiciels utilisés</strong> et les <strong>dates de création</strong>.</p>
         <button type="button" id="openModalButton" class="button" data-toggle="modal" data-target="#myModal">
     Ajoutez votre Projet
 </button>
@@ -114,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     </div>
 </div>
 <div id="Projets">
-
 <?php
 $sql = "SELECT * FROM projets_pro";
 $result = $conn->query($sql);
@@ -155,10 +152,6 @@ $(".close").click(function(){
 });
 
 </script>
-
-
-   
-
 
 </body>
 

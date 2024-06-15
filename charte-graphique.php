@@ -14,11 +14,10 @@
 <?php   include 'sidebar.php'; ?>
     <div class="main-content">
         <h1>Charte Graphique</h1>
-        <p>Sur le Lien suivent vous y trouverais le Pdf de la charte graphque de ce site web
- ainsi que mon Cv. Elle a été fait sur Figma.</p>
+        <p>Sur le lien suivant, vous trouverez le PDF de la charte graphique de ce site web ainsi que mon CV. Ils ont été créés sur <strong>Figma</strong>.</p>
 <div>
     <button onclick="window.open('doc/Charte Graphique Clément Castex V2.pdf', '_blank');">
-        <span class="text" >Téléchargé ma Charte Graphique </span>
+        <span class="text" >Téléchargez ma Charte Graphique</span>
         <span class="shimmer"></span>
     </button>
     </div>

@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
 <?php   include 'sidebar.php'; ?>
     <div class="main-content">
         <h1>Mes Projets Personnels</h1>
-        <p>Dans cette rubrique, vous découvrirez mes Projets Personnels, vous y trouverez des dessins réalisés lors de cours extrascolaire ou indépendamment. Ils seront accompagnés d’une description incluant les logiciels utilisés et les dates de création.</p>
+        <p>Dans cette rubrique, vous découvrirez mes <strong>Projets Personnels</strong>. Vous y trouverez des dessins réalisés lors de cours extrascolaires ou de manière indépendante. Ils seront accompagnés d’une description incluant les <strong>logiciels utilisés</strong> et les <strong>dates de création</strong>.</p>
         <button type="button" id="openModalButton" class="button" data-toggle="modal" data-target="#myModal">
         Ajoutez votre Projet
         </button>
