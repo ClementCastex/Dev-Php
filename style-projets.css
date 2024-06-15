@@ -1,0 +1,306 @@
+/********************
+      BackGround
+********************/
+
+/* Background */
+body {
+  background: linear-gradient(-45deg, #5f358c, #181221, #5f358c);
+  background-size: 400% 400%;
+  animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+h1 {
+  padding: 10.625rem 0 0 3rem;
+  color: #f7f3f7;
+  font-size: 6rem;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+}
+p {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  padding: 5.313rem 0 0 10.625rem;
+  color: #f7f3f7;
+  font-size: 1.5rem;
+  width: 70%;
+}
+
+/********************
+    Button Intro
+********************/
+
+.button {
+  display: flex;
+  float: right;
+  margin: 14rem 9.25rem 0 0;
+  padding: 1.5rem 3rem;
+  border-radius: 10rem;
+  color: #f7f3f7;
+  font-size: 1.25rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+}
+
+.button:after,
+.button:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+  border-radius: 10rem;
+}
+
+.button:after {
+  background-color: #5b348b;
+  z-index: -2;
+}
+
+.button:before {
+  background-color: #371f53;
+  width: 0%;
+  z-index: -1;
+}
+
+.button:hover:before {
+  width: 100%;
+}
+
+.button:hover {
+  color: #f7f3f7;
+}
+
+#myModal {
+  display: none;
+}
+/********************
+    Pop ups
+********************/
+
+.modal-backdrop.show {
+  opacity: 0.5; /* Diminuez selon vos préférences pour moins d'obscurité */
+}
+
+.modal-dialog {
+  display: flex;
+  align-items: center; /* Alignement vertical */
+  justify-content: center; /* Alignement horizontal */
+  min-height: calc(
+    100vh - 60px
+  ); /* Hauteur minimale, 60px permet un peu de marge en haut et en bas */
+  margin: 30px auto; /* Marge pour garantir qu'elle ne touche jamais les bords */
+}
+
+.modal-content {
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  min-width: 50%;
+  justify-content: center;
+  vertical-align: center;
+}
+.modal-title {
+  color: #f7f3f7;
+  font-size: 250%;
+  width: 80%;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+}
+.close {
+  float: right;
+  width: 50px;
+  height: 50px;
+  font-size: 220%;
+  background: none;
+  color: #f7f3f7;
+  border-radius: 15px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.25rem;
+}
+
+.modal-body p {
+  margin-left: 1.5rem;
+  padding: 0;
+  width: 50%;
+  margin-top: 1.75rem;
+  margin-bottom: 1.25rem;
+  justify-content: center;
+  vertical-align: center;
+}
+
+#i-image,
+#i-titre,
+#i-descrip {
+  margin: 1.75rem 0 1.25rem 1.5rem;
+  color: #f7f3f7;
+  display: flex;
+  justify-content: space-between;
+}
+
+/********************
+    Btn upload 
+********************/
+
+.btn {
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
+  background-color: #5b348b; /* Couleur de fond unifiée pour .btn */
+  color: #f7f3f7; /* Couleur du texte unifiée pour .btn */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+  background-color: #5b348b; /* Uniform background color */
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: moveInBottom 5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+/********************
+    Projet 
+********************/
+
+/* Placement */
+#Projets {
+  width: 100%;
+  clear: both;
+  display: grid;
+  place-items: center;
+  height: auto;
+  padding-top: 5rem;
+}
+
+.projet {
+  padding-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-left {
+  width: 35%;
+  display: flex;
+  float: inline-start;
+  margin-right: 1.25rem;
+  margin-left: 3rem;
+}
+
+.P-img {
+  width: 100%;
+  height: auto;
+  box-shadow: -5px 5px 10px #5b348b;
+}
+
+.text-right {
+  width: 40%;
+}
+
+.P-titre,
+.P-descrip {
+  color: #f7f3f7;
+  margin: 10px 0; /* Ajoute un peu d'espacement vertical */
+}
+
+.P-titre {
+  width: 80%;
+  font-size: 2.5rem;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+  padding: 0.5rem 1rem;
+}
+
+.P-descrip {
+  font-size: 1.25rem;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  padding: 0;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  width: 80%;
+}
+
+.detail {
+  margin-left: 2.5rem;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  padding: 0;
+  color: #f7f3f711;
+}
+.date,
+.creator {
+  padding: 0;
+  font-size: 1rem;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 500;
+  width: 50%;
+}
+.creator {
+  text-align: end;
+}

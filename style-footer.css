@@ -1,0 +1,102 @@
+body {
+  background-color: #23272a;
+}
+#footer {
+  border-top: 4px solid #5b348b;
+  margin-top: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+li a {
+  color: #f7f7f7;
+  text-decoration: none;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+}
+#img-footer {
+  filter: drop-shadow(0px 0px 5px #5b348b);
+  width: 50%;
+}
+.logo-footer {
+  padding: 1rem;
+}
+.box-right {
+  flex: auto;
+  width: 40%;
+}
+.box-left {
+  flex: auto;
+  width: 40%;
+}
+ul {
+  list-style: none;
+}
+.ult {
+  margin-left: -30%;
+}
+li {
+  margin-top: 10px;
+}
+.box-left,
+.box-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+/************************
+      Icons Réseaux
+************************/
+
+.fond-img {
+  margin-top: 30px;
+  width: 100%;
+  height: 60px;
+}
+.icon,
+.icon a,
+.icon i {
+  pointer-events: auto;
+}
+
+.icon {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  margin-left: 12px;
+  margin-right: 12px;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1000;
+}
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.25s ease;
+  border-radius: 30px;
+}
+.icon i {
+  position: relative;
+  color: #f7f7f7;
+  font-size: 40px;
+  margin: 16% 0 0 16%;
+  transition: all 0.25s ease;
+}
+
+.icon-fill::before {
+  transition-duration: 0.5s;
+  box-shadow: inset 0 0 0 1px #5b348b;
+}
+.icon-fill:hover::before {
+  box-shadow: inset 0 0 0 60px #5b348b;
+}

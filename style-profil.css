@@ -1,0 +1,95 @@
+/********************
+      BackGround
+********************/
+
+/* Background */
+body {
+  background: linear-gradient(-45deg, #5f358c, #181221, #5f358c);
+  background-size: 400% 400%;
+  animation: gradient 8s ease infinite;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/********************
+      Font
+********************/
+
+h1,
+h2,
+h3,
+li {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 900;
+  color: #f7f3f7;
+}
+
+p,
+a {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
+  color: #f7f3f7;
+}
+
+/* Partie fixe */
+#fixedPart {
+  width: 60%;
+  height: auto;
+  position: fixed;
+  overflow-y: hidden;
+  padding: 15% 0 0 15%;
+  width: auto;
+}
+#fixedPart a {
+  font-size: 150%;
+  padding-left: 5%;
+}
+#fixedPart h1 {
+  font-size: 250%;
+}
+
+/* Partie coulissante */
+
+#slidingPart {
+  width: 40%;
+  height: 250%;
+  float: right;
+  padding-right: 5%;
+  padding-top: 50vh;
+}
+#slidingPart::-webkit-scrollbar {
+  display: none;
+}
+#slidingPart h2 {
+  font-size: 1.4rem;
+  padding-top: 70px;
+}
+#home h2 {
+  font-size: 2rem;
+  padding-top: 70px;
+}
+#slidingPart p {
+  font-size: 0.8rem;
+  padding-top: 20px;
+}
+#slidingPart a {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+#img_logo {
+  position: absolute;
+  width: 10%;
+  height: auto;
+  left: 85%;
+  padding-top: 1.5rem;
+}
