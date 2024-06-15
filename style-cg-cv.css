@@ -229,3 +229,11 @@ button:hover .text,
 button.active .text {
   animation: text 0.66s ease-in 1 both;
 }
+
+#iframe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30%;
+  width: 100%;
+}

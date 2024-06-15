@@ -19,9 +19,10 @@
             <span class="text" >Téléchargez mon CV </span>
             <span class="shimmer"></span>
         </button>
-<!-- <div id="iframe"><iframe name="CV-cCASTEX" src="https://clementcastex.github.io/CV_Castex_Clement/" scrolling="no" height="1680" width="1100" FRAMEBORDER="no"></iframe></div>
- -->
- <?php   include 'footer.php'; ?>
+        <div id="iframe">
+            <iframe name="CV-cCASTEX" src="https://clementcastex.github.io/CV_Castex_Clement/" scrolling="no" height="1680" width="1100" FRAMEBORDER="no"></iframe>
+        </div>
+        <?php   include 'footer.php'; ?>
     </div>
 </body>
 
