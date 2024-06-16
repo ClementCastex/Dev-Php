@@ -46,13 +46,14 @@
                 <section id="projet">
                     <h2>Mes Projets</h2>
                     <p>Dans la rubrique suivante, vous découvrirez mes <strong>Projets Professionnels</strong>. Vous y trouverez des projets réalisés lors des cours de la Normandie Web School. Ils seront accompagnés d'une description incluant les logiciels utilisés et les dates de création.</p>
-                    <a href="projets-professionnels.php">Projets Professionnels ---></a>
+                    <a href="projets-professionnels.php">Allez voir Projets Professionnels ---></a>
                     <p>Tandis que dans cette rubrique, vous découvrirez mes <strong>Projets Personnels</strong>. Vous y trouverez des dessins réalisés lors de cours extrascolaires ou indépendamment. Ils seront accompagnés d'une description incluant les logiciels utilisés et les dates de création.</p>
-                    <a href="projets-personnels.php">Projets Personnels ---></a>
+                    <a href="projets-personnels.php">Allez voir Projets Personnels ---></a>
                 </section>
                 <section id="cv">
                     <h2> Mon CV</h2>
                     <p>Lors de mon cursus à la Normandie Web School, j’ai eu l’occasion de réaliser mon CV en <strong>HTML</strong> et en <strong>CSS</strong>.</p>
+                    <a href="CV.php">Allez voir mon CV ---></a>
                 </section>
             </div>
         </div>

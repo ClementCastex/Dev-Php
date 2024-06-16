@@ -1,77 +1,60 @@
 <?php
 include 'db_connect.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    if($check !== false) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit_project'])) {
+        // Handle project uploads
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if ($check !== false) {
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
 
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
+        // Additional checks...
 
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                $title_pperso = $_POST['title_pperso'];
+                $description_pperso = $_POST['description_pperso'];
+                $date_pperso = date('Y-m-d');
+                $creator_pperso = 'Your Name';
 
-    if ($_FILES["fileToUpload"]["size"] > 50000000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
+                $sql = "INSERT INTO projets_perso (image_pperso, title_pperso, description_pperso, date_pperso, creator_pperso) VALUES (?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sssss", $target_file, $title_pperso, $description_pperso, $date_pperso, $creator_pperso);
 
-
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $title_pperso = $_POST['title_pperso'];
-            $description_pperso = $_POST['description_pperso'];
-            $date_pperso = date('Y-m-d');
-            $creator_pperso = 'Your Name';  
-
-            $sql = "INSERT INTO projets_perso (image_pperso, title_pperso, description_pperso, date_pperso, creator_pperso)
-                    VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssss", $target_file, $title_pperso, $description_pperso, $date_pperso, $creator_pperso);
-
-            if($stmt->execute()){
+                if(!$stmt->execute()){
+                    echo "Sorry, there was an error uploading your file.";
+                }
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
-        } else {
-            echo "Sorry, there was an error uploading your file.";
         }
     }
-}
-/* Commentaire */
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $project_id = $_POST['project_id'];
-    $comment_text = $_POST['texte_commentaire_perso'];
-    // Sanitize inputs here as necessary
 
-    $sql = "INSERT INTO commentaires_perso (id_projet_perso, texte_commentaire_perso) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $project_id, $comment_text);
+    if (isset($_POST['submit_comment'])) {
+        // Handle comments
+        $project_id = $_POST['project_id'];
+        $comment_text = $_POST['texte_commentaire_perso'];
 
-    if ($stmt->execute()) {
-        echo "Comment added successfully!";
-    } else {
-        echo "Error adding comment: " . $conn->error;
+        $sql = "INSERT INTO commentaires_perso (id_projet_perso, texte_commentaire_perso) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("is", $project_id, $comment_text);
+
+        if (!$stmt->execute()) {
+            echo "Error adding comment: " . $conn->error;
+        } else {
+            echo "Comment added successfully!";
+        }
     }
 }if (isset($row['id_pperso'])) {
     $project_id = $row['id_pperso'];
@@ -81,6 +64,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     error_log('id_pperso is not set in the row.');
     }
 
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST['submit'])) {
+            // Handle project upload
+        }
+    
+        if (isset($_POST['project_id']) && isset($_POST['texte_commentaire_perso'])) {
+            $project_id = $_POST['project_id'];
+            $comment_text = $_POST['texte_commentaire_perso'];
+            // Rest of the comment handling code
+        }
+    }
 ?>
 <html lang="fr">
 
@@ -127,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <p>Description :</p>
                             <textarea name="description_pperso" id="description_pperso"></textarea>
                         </div>  
-                        <input type="submit" value="Poster ton Projet" name="submit" class="btn btn-white btn-animate">
+                        <input type="submit" value="Poster ton Projet" name="submit_project" class="btn btn-white btn-animate">
                     </form>
                 </div>
             </div>
@@ -192,7 +186,7 @@ if ($result->num_rows > 0) {
                                 <input type="hidden" name="project_id" value="<?php echo $row['id_pperso']; ?>">
                                 <p>Laissez un Commentaire:</p>
                                 <textarea name="texte_commentaire_perso" id="texte_commentaire_perso"></textarea>
-                                <input type="submit" value="Submit">
+                                <input type="submit" value="Submit" name="submit_comment">
                             </form>
                         </div>
                     </div>  

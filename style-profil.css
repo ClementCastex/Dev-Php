@@ -39,6 +39,16 @@ a {
   font-weight: 500;
   color: #f7f3f7;
 }
+#cv a,
+#projet a {
+  display: block;
+  float: right; /* Force le lien à flotter à droite */
+  clear: both; /* S'assure que l'élément suivant ne flotte pas à côté */
+}
+
+#projet p {
+  margin: 2.5rem 0 1rem 0;
+}
 
 /* Partie fixe */
 #fixedPart {
@@ -61,10 +71,11 @@ a {
 
 #slidingPart {
   width: 40%;
-  height: 250%;
+  height: 225vh;
   float: right;
   padding-right: 5%;
-  padding-top: 50vh;
+  margin-top: 30%;
+  padding-top: 0vh;
 }
 #slidingPart::-webkit-scrollbar {
   display: none;
