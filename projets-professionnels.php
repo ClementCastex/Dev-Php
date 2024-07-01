@@ -4,7 +4,6 @@ include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['submit_project'])) {
-        // Handle project uploads
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $uploadOk = 1;
@@ -17,8 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "File is not an image.";
             $uploadOk = 0;
         }
-
-        // Additional checks...
 
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
@@ -62,22 +59,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 if (isset($row['id_ppro'])) {
     $project_id = $row['id_ppro'];
-    // Continue processing
 } else {
-    // Handle the error, e.g., log it or display a message
     error_log('id_ppro is not set in the row.');
     }
 
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($_POST['submit'])) {
-            // Handle project upload
         }
     
         if (isset($_POST['project_id']) && isset($_POST['texte_commentaire_pro'])) {
             $project_id = $_POST['project_id'];
             $comment_text = $_POST['texte_commentaire_pro'];
-            // Rest of the comment handling code
         }
     }
 ?>
@@ -146,7 +139,6 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        // Utilisez l'ID du projet pour créer un ID de modal unique
         $uniqueModalId = "projectInfoModal-" . $row['id_ppro'];
 ?>
         <div class="projet" style="display: flex; align-items: flex-start;">
